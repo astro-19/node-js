@@ -10,6 +10,15 @@ const dishRouter = require('./routes/dishRouter');
 const leaderRouter = require('./routes/leaders');
 const promoRouter = require('./routes/promotions');
 
+const mongoose = require('mongoose');
+const Dishes = require('./models/dishes');
+const url = 'mongodb://localhost:27017/nodeExpressServer';
+const connect = mongoose.connect(url);
+
+connect.then((db) => {
+  console.log("Connected correctly to server...")
+}, (err) => {console.log(err); });
+
 const app = express();
 
 // view engine setup
