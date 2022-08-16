@@ -153,7 +153,7 @@ dishRouter.route('/:dishId/comments/:commentId')
         Dishes.findById(req.params.dishId)
             .then((dish) => {
                 if (dish != null && dish.comments.id(req.params.commentId) != null){
-                    
+                    res.setStatus = 200;
                 }
             }, (err) => next(err))
             .catch((err) => next(err))
