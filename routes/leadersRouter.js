@@ -14,6 +14,7 @@ leaderRouter.route('/')
     .then((leaders) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
+        res.set('Access-Control-Allow-Origin', '*');
         res.json(leaders);
     }, (err) => next(err))
     .catch((err) => next(err))
