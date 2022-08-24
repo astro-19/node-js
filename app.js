@@ -11,7 +11,7 @@ const leaderRouter = require('./routes/leadersRouter');
 const promoRouter = require('./routes/promoRouter');
 
 const mongoose = require('mongoose');
-const Dishes = require('./models/dishes');
+// const Dishes = require('./models/dishes');
 const url = 'mongodb://localhost:27017/nodeExpressServer';
 const connect = mongoose.connect(url);
 
@@ -33,7 +33,6 @@ app.use(cookieParser());
 function auth(req, res, next){
   console.log(req.headers);
   var authHeader = req.headers.authorization;
-
   if(!authHeader){
     var err = new Error('You are not authenticated!');
     res.setHeader('WWW-Authenticate', 'Basic');

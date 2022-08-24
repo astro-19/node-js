@@ -15,6 +15,7 @@ dishRouter.route('/')
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.set('Access-Control-Allow-Origin', '*');
+            res.set('Access-Control-Allow-Credentials', 'true');
             res.json(dishes);
         }, (err) => next(err))
             .catch((err) => next(err))
