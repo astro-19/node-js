@@ -30,6 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Basic Authentication
 function auth(req, res, next){
   console.log(req.headers);
   var authHeader = req.headers.authorization;
@@ -40,7 +41,8 @@ function auth(req, res, next){
     return next(err);
   }
 
-  var auth = new Buffer(authHeader.split(' ')[1], 'base64').toString().split(':');
+  var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
+  // console.log(auth);
   var username = auth[0];
   var password = auth[1];
 
@@ -54,6 +56,7 @@ function auth(req, res, next){
     return next(err);
   }
 }
+// Basic Authentication Ends
 
 app.use(auth);
 

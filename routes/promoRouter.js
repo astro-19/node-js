@@ -14,8 +14,9 @@ promoRouter.route('/')
     Promos.find({}).then((promos) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.set('Access-Control-Allow-Origin', '*');
-        res.set('Access-Control-Allow-Credentials', 'true');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.json(promos);
     }, (err) => next(err))
     .catch((err) => next(err))
