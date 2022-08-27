@@ -34,6 +34,7 @@ app.use(cookieParser());
 function auth(req, res, next){
   console.log(req.headers);
   var authHeader = req.headers.authorization;
+  // console.log(authHeader);
   if(!authHeader){
     var err = new Error('You are not authenticated!');
     res.setHeader('WWW-Authenticate', 'Basic');
