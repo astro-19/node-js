@@ -30,11 +30,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('12345-67890-09876-54321'));
 
 // Basic Authentication
-function auth(req, res, next) {
-  // console.log(req.headers);
-  console.log(req.signedCookies);
-  if (!req.signedCookies.user) {
-    var authHeader = req.headers.authorization;
+
+var authHeader = req.headers.authorization;
     // console.log(authHeader);
     if (!authHeader) {
       var err = new Error('You are not authenticated!');
@@ -44,12 +41,11 @@ function auth(req, res, next) {
     }
 
     var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-    // console.log(auth);
+    console.log(auth);
     var username = auth[0];
     var password = auth[1];
 
     if (username === 'admin' && password === 'password') {
-      res.cookie('user','admin', {signed: true});
       next();
     }
     else {
@@ -58,18 +54,7 @@ function auth(req, res, next) {
       err.status = 401;
       return next(err);
     }
-  }
-  else{
-    if(req.signedCookies.user === 'admin') {
-      next();
-    }else{
-      var err = new Error('You are not authenticated!');
 
-      err.status = 401;
-      return next(err);
-    }
-  }
-}
 // Basic Authentication Ends
 
 app.use(auth);
@@ -106,7 +91,11 @@ module.exports = app;
 
 
 
-// var authHeader = req.headers.authorization;
+// function auth(req, res, next) {
+//   // console.log(req.headers);
+//   console.log(req.signedCookies);
+//   if (!req.signedCookies.user) {
+//     var authHeader = req.headers.authorization;
 //     // console.log(authHeader);
 //     if (!authHeader) {
 //       var err = new Error('You are not authenticated!');
@@ -116,11 +105,12 @@ module.exports = app;
 //     }
 
 //     var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-//      console.log(auth);
+//     // console.log(auth);
 //     var username = auth[0];
 //     var password = auth[1];
 
 //     if (username === 'admin' && password === 'password') {
+//       res.cookie('user','admin', {signed: true});
 //       next();
 //     }
 //     else {
@@ -129,3 +119,15 @@ module.exports = app;
 //       err.status = 401;
 //       return next(err);
 //     }
+//   }
+//   else{
+//     if(req.signedCookies.user === 'admin') {
+//       next();
+//     }else{
+//       var err = new Error('You are not authenticated!');
+
+//       err.status = 401;
+//       return next(err);
+//     }
+//   }
+// }
