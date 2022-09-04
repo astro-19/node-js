@@ -41,7 +41,7 @@ function auth(req, res, next) {
   }
 
   var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-  // console.log(auth);
+  console.log(auth);
   var username = auth[0];
   var password = auth[1];
 
@@ -63,6 +63,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+console.log("before calling /dishes");
 app.use('/dishes', dishRouter);
 app.use('/leaders', leaderRouter);
 app.use('/promotions', promoRouter);

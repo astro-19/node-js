@@ -17,6 +17,7 @@ dishRouter.route('/')
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Credentials', true);
             res.setHeader('Access-Control-Allow-Methods', 'GET');
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
             res.json(dishes);
         }, (err) => next(err))
             .catch((err) => next(err))
