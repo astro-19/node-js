@@ -32,7 +32,7 @@ app.use(cookieParser('12345-67890-09876-54321'));
 // Basic Authentication
 function auth(req, res, next) {
   if (req.method === 'OPTIONS') {
-    console.log('!OPTIONS');
+    // console.log('!OPTIONS');
     var headers = {};
     res.setHeader('Content-Type', 'application/json');
         res.setHeader('Access-Control-Allow-Origin', '*');
