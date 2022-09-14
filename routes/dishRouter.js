@@ -29,7 +29,12 @@ dishRouter.route('/')
                 console.log("Dish created: ", dish);
                 res.statusCode = 200;
                 res.setHeader('Content-type', 'application/json');
-                res.json(dish);
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Credentials', true);
+                res.setHeader('Access-Control-Allow-Methods', 'POST');
+                res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+                // res.json(dish);
+                res.json("Dish created")
             }, (err) => next(err))
             .catch((err) => next(err))
     })
