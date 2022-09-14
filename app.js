@@ -98,11 +98,6 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 
-
-
-
-
-
 // function auth(req, res, next) {
 //   // console.log(req.headers);
 //   console.log(req.signedCookies);
