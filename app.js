@@ -32,7 +32,6 @@ app.use(cookieParser('12345-67890-09876-54321'));
 // Basic Authentication
 function auth(req, res, next) {
   if (req.method === 'OPTIONS') {
-    // console.log('!OPTIONS');
     var headers = {};
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -52,7 +51,6 @@ function auth(req, res, next) {
   }
 
   var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-  // console.log(auth);
   var username = auth[0];
   var password = auth[1];
 
