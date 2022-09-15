@@ -32,7 +32,8 @@ dishRouter.route('/')
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Access-Control-Allow-Credentials', true);
                 res.setHeader('Access-Control-Allow-Methods', 'POST');
-                res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+                res.setHeader('Access-Control-Allow-Headers', ['Access-Control-Request-Headers, Access-Control-Allow-Origin, Origin, Authorization, X-Requested-With, Content-Type, Accept']);
+                res.setHeader('Access-Control-Expose-Headers', ['Authorization, Access-Token']);
                 res.json("Dish created" + dish.name)
             }, (err) => next(err))
             .catch((err) => next(err))

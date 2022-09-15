@@ -31,17 +31,23 @@ app.use(cookieParser('12345-67890-09876-54321'));
 
 // Basic Authentication
 function auth(req, res, next) {
+
   if (req.method === 'OPTIONS') {
     var headers = {};
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    //res.setHeader('Access-Control-Allow-Methods', '*');
+    //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Expose-Headers', ['Authorization, Access-Token, Access-Control-Allow-Origin']);
+    res.setHeader('Access-Control-Allow-Headers', ['Access-Control-Request-Headers, Origin, Authorization, X-Requested-With, Content-Type, Accept']);
     res.writeHead(200, headers);
     res.end();
   }
+
   console.log(req.headers);
+
+
   var authHeader = req.headers.authorization;
   if (!authHeader) {
     var err = new Error('You are not authenticated!');
